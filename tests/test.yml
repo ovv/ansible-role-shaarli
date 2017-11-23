@@ -1,53 +1,14 @@
-ovv.shaarli
-===========
-
-[![Build Status](https://travis-ci.org/ovv/ansible-role-shaarli.svg?branch=master)](https://travis-ci.org/ovv/ansible-role-shaarli)
-
-Ansible role to install and configure [shaarli](https://github.com/shaarli/Shaarli).
-
-Installation
-------------
-
-To install this roles clone it into your roles directory.
-
-```bash
-$ git clone https://github.com/ovv/ansible-role-shaarli.git ovv.shaarli
-```
-
-If your playbook already reside inside a git repository you can clone it by using git submodules.
-
-```bash
-$ git submodule add -b master https://github.com/ovv/ansible-role-shaarli.git ovv.shaarli
-```
-
-Role Variables
---------------
-
-* `shaarli_login`: Shaarli admin username.
-* `shaarli_password`: Shaarli admin password.
-* `shaarli_salt`: Salt used to store the password.
-* `shaarli_api_secret`: Shaarli API secret
-* `shaarli_title`: Title (default to `My Links`).
-
-* `shaarli_api`: Enable shaarli API (default to `False`).
-* `shaarli_version`: Version of shaarli to install (default to `v0.9`).
-* `shaarli_git_url`: Shaarli git repo (default to `https://github.com/shaarli/Shaarli.git`).
-* `shaarli_tz`: Timezone used by shaarli (default to `UTC`).
-
-Example Playbook
-----------------
-
-```yml
+---
 - hosts: localhost
   roles:
     - pyslackers.nginx
     - ovv.php7
-    - ovv.shaarli
+    - ansible-role-shaarli
   vars:
-    shaarli_login: 
-    shaarli_password: 
-    shaarli_salt: 
-    shaarli_api_secret: 
+    shaarli_login: admin
+    shaarli_password: password
+    shaarli_salt: q7WH5aWpVhkEmpuCI3RjuxVLZVss
+    shaarli_api_secret: 6SHwnH8DOO2mjPZn
 
     # ovv.php7 variables
     php_pools:
@@ -99,9 +60,4 @@ Example Playbook
           php:
             location: ~ \.php$
             custom: deny all;
-```
 
-License
--------
-
-MIT

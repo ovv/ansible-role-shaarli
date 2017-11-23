@@ -1,0 +1,34 @@
+---
+
+- name: Download
+  git:
+    repo: "{{ shaarli_git_url }}"
+    version: "{{ shaarli_version }}"
+    dest: /opt/shaarli
+    force: yes
+  notify: restart php
+
+- name: Install dependencies
+  composer:
+    command: install
+    working_dir: /opt/shaarli
+
+- name: Configure
+  template:
+    owner: shaarli
+    group: shaarli
+    src: opt/shaarli/data/config.json.php
+    dest: /opt/shaarli/data/config.json.php
+  notify: restart php
+
+- name: Set permission
+  file:
+    state: directory
+    mode: 0755
+    owner: shaarli
+    path: "{{ item }}"
+  with_items:
+    - /opt/shaarli/cache
+    - /opt/shaarli/data
+    - /opt/shaarli/pagecache
+    - /opt/shaarli/tmp
