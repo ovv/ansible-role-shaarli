@@ -36,8 +36,8 @@
         "title": "{{ shaarli_title }}"
     },
     "updates": {
-        "check_updates": true,
-        "check_updates_branch": "{{ shaarli_version }}",
+        "check_updates": false,
+        "check_updates_branch": "stable",
         "check_updates_interval": 86400
     },
     "feed": {
