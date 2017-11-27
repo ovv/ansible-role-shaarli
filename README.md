@@ -34,6 +34,8 @@ Role Variables
 * `shaarli_git_url`: Shaarli git repo (default to `https://github.com/shaarli/Shaarli.git`).
 * `shaarli_tz`: Timezone used by shaarli (default to `UTC`).
 
+* `shaarli_local_datastore`: Local datastore path to upload to this shaarli.
+
 Example Playbook
 ----------------
 

@@ -5,3 +5,6 @@ shaarli_git_url: https://github.com/shaarli/Shaarli.git
 shaarli_tz: UTC
 shaarli_title: My Links
 shaarli_api: False
+
+shaarli_backup: False
+shaarli_restore: False

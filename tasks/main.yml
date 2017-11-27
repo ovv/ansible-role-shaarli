@@ -17,8 +17,11 @@
   template:
     owner: shaarli
     group: shaarli
-    src: opt/shaarli/data/config.json.php
-    dest: /opt/shaarli/data/config.json.php
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+  with_items:
+    - opt/shaarli/data/config.json.php
+    - opt/shaarli/data/updates.txt
   notify: restart php
 
 - name: Set permission
@@ -32,3 +35,20 @@
     - /opt/shaarli/data
     - /opt/shaarli/pagecache
     - /opt/shaarli/tmp
+
+- name: Fetch datastore
+  fetch:
+    src: /opt/shaarli/data/datastore.php
+    dest: "{{ shaarli_local_datastore }}"
+    flat: yes
+  when: shaarli_backup
+
+- name: Upload local datastore
+  copy:
+    src: "{{ shaarli_local_datastore }}"
+    dest: /opt/shaarli/data/datastore.php
+    owner: shaarli
+    group: shaarli
+    mode: 0644
+    backup: True
+  when: shaarli_restore
