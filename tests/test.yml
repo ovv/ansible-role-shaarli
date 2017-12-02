@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   roles:
-    - pyslackers.nginx
     - ovv.php7
+    - pyslackers.nginx
     - ansible-role-shaarli
   vars:
     shaarli_login: admin
