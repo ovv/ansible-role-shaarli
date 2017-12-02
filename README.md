@@ -42,8 +42,8 @@ Example Playbook
 ```yml
 - hosts: localhost
   roles:
-    - pyslackers.nginx
     - ovv.php7
+    - pyslackers.nginx
     - ovv.shaarli
   vars:
     shaarli_login: 
