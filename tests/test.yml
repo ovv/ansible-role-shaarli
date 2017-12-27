@@ -18,6 +18,7 @@
         working_dir: /opt/shaarli
 
     # pyslackers.nginx variables
+    ufw_enabled: False  # UFW is not installed in test images
     nginx_sites:
       shaarli:
         directory: /opt/shaarli
