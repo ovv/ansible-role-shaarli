@@ -28,6 +28,7 @@ Role Variables
 * `shaarli_salt`: Salt used to store the password.
 * `shaarli_api_secret`: Shaarli API secret
 * `shaarli_title`: Title (default to `My Links`).
+* `shaarli_custom_css`: Path to custom css file.
 
 * `shaarli_api`: Enable shaarli API (default to `False`).
 * `shaarli_version`: Version of shaarli to install (default to `v0.9`).
