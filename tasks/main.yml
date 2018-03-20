@@ -41,6 +41,13 @@
     - /opt/shaarli/pagecache
     - /opt/shaarli/tmp
 
+- name: Custom css
+  copy:
+    src: "{{ shaarli_custom_css }}"
+    dest: /opt/shaarli/data/user.css
+    owner: shaarli
+  when: shaarli_custom_css is defined
+
 - name: Fetch datastore
   fetch:
     src: /opt/shaarli/data/datastore.php
