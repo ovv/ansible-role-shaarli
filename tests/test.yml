@@ -10,6 +10,10 @@
     shaarli_salt: q7WH5aWpVhkEmpuCI3RjuxVLZVss
     shaarli_api_secret: 6SHwnH8DOO2mjPZn
 
+    # ovv.php7
+    custom_php_packages:
+      - php7.0-xml
+
     # ovv.php7 variables
     php_pools:
       shaarli:

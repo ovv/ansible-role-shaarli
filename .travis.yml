@@ -2,9 +2,7 @@
 services: docker
 
 env:
-  - distro=debian8
   - distro=debian9
-  - distro=ubuntu1604
 
 install:
   - export container_id=$(date +%s)

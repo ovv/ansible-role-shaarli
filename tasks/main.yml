@@ -1,8 +1,18 @@
 ---
 
-- name: install git
+- include_tasks: yarn.yml
+
+- name: Install requirements
   apt:
-    pkg: git
+    pkg:
+      - curl
+      - gnupg
+      - debian-archive-keyring
+      - apt-transport-https
+      - ca-certificates
+      - git
+      - yarn
+      - make
     state: latest
 
 - name: Download
@@ -11,12 +21,22 @@
     version: "{{ shaarli_version }}"
     dest: /opt/shaarli
     force: yes
+  register: shaarli_download
   notify: restart php
 
 - name: Install dependencies
   composer:
     command: install
     working_dir: /opt/shaarli
+    prefer_dist: True
+    no_dev: False
+    optimize_autoloader: True
+
+- name: Build frontend
+  command: "make build_frontend"
+  args:
+    chdir: /opt/shaarli
+  when: shaarli_download is changed
 
 - name: Configure
   template:
