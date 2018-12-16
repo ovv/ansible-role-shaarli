@@ -4,7 +4,6 @@ services: docker
 env:
   - distro=debian9
   - distro=ubuntu1604
-  - distro=ubuntu1804
 
 install:
   - export container_id=$(date +%s)
@@ -24,6 +23,7 @@ install:
 script:
   # Run playbook.
   - docker exec --tty $container_id env TERM=xterm ansible-playbook /etc/ansible/roles/ansible-role-shaarli/tests/test.yml --syntax-check
+  - docker exec $container_id env TERM=xterm env ANSIBLE_FORCE_COLOR=1 ansible-playbook /etc/ansible/roles/ansible-role-shaarli/tests/test.yml -vvv
   - docker exec $container_id env TERM=xterm env ANSIBLE_FORCE_COLOR=1 ansible-playbook /etc/ansible/roles/ansible-role-shaarli/tests/test.yml -vvv
   - docker exec $container_id ansible-playbook /etc/ansible/roles/ansible-role-shaarli/tests/test.yml -vvv | tee -a $idempotence
   - tail $idempotence | grep -q 'changed=0.*failed=0' && (printf 'Idempotence test pass') || (printf 'Idempotence test fail' && exit 1)
