@@ -53,6 +53,10 @@ Example Playbook
     shaarli_api_secret: 
 
     # ovv.php7 variables
+
+    custom_php_packages:
+      - php7.0-xml
+
     php_pools:
       shaarli:
         socket: /var/run/php7.0-fpm-shaarli.sock
