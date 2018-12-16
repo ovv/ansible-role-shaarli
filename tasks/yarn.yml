@@ -1,0 +1,12 @@
+---
+
+- name: "Yarn apt key"
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: "Yarn apt repository"
+  apt_repository:
+    repo: "deb http://dl.yarnpkg.com/debian/ stable main"
+    update_cache: yes
+    state: present
