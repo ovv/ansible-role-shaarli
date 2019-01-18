@@ -2,6 +2,20 @@
 
 - include_tasks: yarn.yml
 
+- name: Add backports repository
+  apt_repository:
+    repo: "{{ item.repo }}"
+    state: present
+    filename: "{{ item.filename }}"
+  with_items:
+    - {repo: "deb http://ftp.debian.org/debian stretch-backports main", filename: backports}
+
+- name: Install nodejs
+  apt:
+    name: nodejs
+    state: latest
+    default_release: stretch-backports
+
 - name: Install requirements
   apt:
     pkg:
@@ -13,6 +27,7 @@
       - git
       - yarn
       - make
+      - unzip
     state: latest
 
 - name: Download
