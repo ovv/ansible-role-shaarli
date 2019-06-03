@@ -88,7 +88,7 @@
     src: /opt/shaarli/data/datastore.php
     dest: "{{ shaarli_local_datastore }}"
     flat: yes
-  when: shaarli_backup
+  when: shaarli_backup | bool
 
 - name: Upload local datastore
   copy:
@@ -98,4 +98,4 @@
     group: shaarli
     mode: 0644
     backup: True
-  when: shaarli_restore
+  when: shaarli_restore | bool
